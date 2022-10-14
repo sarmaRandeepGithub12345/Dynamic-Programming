@@ -32,10 +32,10 @@ int maxProfit(vector<int>& prices, int n)
 {
     int b1=100000,p1=0,b2=100000,p2=0;
  for(auto it:prices){
-     b1=min(b1,it);//first buy
-     p1=max(p1,it-b1);//first sell
-     b2=min(b2,it-p1);//second effective buy after minusing profit of previous
-     p2=max(p2,it-b2);//Overall profit
+    b1=min(b1,it);//first buy--------------- oo
+     p1=max(p1,it-b1);//first sell --------------- oooo (Net profit =2)
+     b2=min(b2,it-p1);//second effective buy after minusing profit of previous-----------  prices[i]-net profit= net second buy
+     p2=max(p2,it-b2);//Overall profit ------------------ prices[i]-net second buy= net second sell
  }
    return p2;
 }
