@@ -80,3 +80,34 @@ while(queue.size()>0){
         scn.close();
     }
 }
+//----------------------------------------------Second method
+void longestIncreasingSubsequence(vector<int>arr, int n)
+{
+    vector<int>dp(n,1);
+    vector<int>hash(n,0);
+    for(int i=0;i<n;i++)hash[i]=i;
+    int ma=0;
+for(int i=1;i<n;i++){
+    for(int j=0;j<i;j++){
+        if(arr[j]<arr[i] && dp[i]<dp[j]+1){
+            dp[i]=dp[j]+1;
+            hash[i]=j;
+        }
+    }if(dp[i]>dp[ma])ma=i;
+ //   cout<<dp[i]<<" "<<hash[i]<<endl;
+}   
+
+vector<int>ans;
+while(ma!=hash[ma]){
+ans.push_back(arr[ma]);
+ma=hash[ma];
+    
+}ans.push_back(arr[ma]);
+ reverse(ans.begin(),ans.end());
+ for(auto it:ans)cout<<it<<" ";
+    
+}
+
+
+
+
