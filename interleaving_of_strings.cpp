@@ -1,3 +1,32 @@
+//optimised solution with 2*O(n) space and time = O(n*m)
+bool isInterleave(string a, string b, string c) {
+        int A=a.length(),B=b.length(),C=c.length(); 
+        if(A+B!=C)return 0;
+ vector<int>dp(B+1,0);
+ for(int i=0;i<=A;i++){
+     vector<int>temp(B+1,0);
+     for(int j=0;j<=B;j++){
+        if(j==0 && i==0)temp[j]=1;
+         else if(i==0){
+            if(b[j-1]==c[i+j-1])temp[j]=temp[j-1];
+        }else if(j==0){
+            if(a[i-1]==c[i+j-1])temp[j]=dp[j];
+        }else{
+            int val1=0,val2=0;
+            if(b[j-1]==c[i+j-1]){
+             val1=temp[j-1];    
+           }if(a[i-1]==c[i+j-1]){
+             val2=dp[j];    
+           }
+            temp[j]=val1|val2;
+        }
+     }dp=temp;
+ }
+    return dp[B]; 
+    }
+
+
+
 //Optimised solution tabulation
 bool isInterleave(string a, string b, string c) {
         int A=a.length(),B=b.length(),C=c.length(); 
